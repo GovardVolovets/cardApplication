@@ -6,13 +6,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class cardApplicationTest {
-    private WebDriver driver;
+    private static WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/GovardVolovets/IdeaProjects/cardApplication/driver/win/chromedriver.exe");
+    public static void setUpAll() {
+        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        System.setProperty("webdriver.chrome.driver", "C:/Users/GovardVolovets/IdeaProjects/cardApplication/driver/win/chromedriver.exe");
     }
 
     @BeforeEach
@@ -32,7 +39,7 @@ public class cardApplicationTest {
     }
 
     @Test
-    void positiveTest() {
+    public void positiveTest() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Василий");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79095554433");
